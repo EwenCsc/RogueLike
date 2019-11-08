@@ -65,7 +65,9 @@ namespace MapRogueLike
                 Exit();
 
             // TODO: Add your update logic here
-
+            KeyboardState state = Keyboard.GetState();
+            if (state.IsKeyDown(Keys.F1))
+                map = new Map();
             base.Update(gameTime);
         }
 
