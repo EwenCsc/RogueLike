@@ -46,7 +46,7 @@ namespace MapRogueLike
         internal List<Room> GetFreeNeighbours(Map map)
         {
             List<Room> freeNeighbours = new List<Room>();
-            Console.WriteLine("Selected Room -> ({0}, {1})", emplacement.X, emplacement.Y);
+            //Console.WriteLine("Selected Room -> ({0}, {1})", emplacement.X, emplacement.Y);
             if (emplacement.X + 1 < map.MapSize.X && map.Rooms[(int)emplacement.X + 1, (int)emplacement.Y].isEmpty)
             {
                 freeNeighbours.Add(map.Rooms[(int)emplacement.X + 1, (int)emplacement.Y]);
@@ -63,7 +63,7 @@ namespace MapRogueLike
             {
                 freeNeighbours.Add(map.Rooms[(int)emplacement.X, (int)emplacement.Y - 1]);
             }
-            freeNeighbours.ForEach(x => Console.WriteLine("({0}, {1})", x.Emplacement.X, x.Emplacement.Y));
+            //freeNeighbours.ForEach(x => Console.WriteLine("({0}, {1})", x.Emplacement.X, x.Emplacement.Y));
             return freeNeighbours;
         }
 
