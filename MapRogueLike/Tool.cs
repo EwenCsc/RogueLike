@@ -27,11 +27,11 @@ namespace MapRogueLike
             }
         }
 
-        public static Texture2D CreateRectangleTexture(Vector2 size, Color color)
+        public static Texture2D CreateRectangleTexture(Vector2 _size, Color _color)
         {
-            Texture2D text = new Texture2D(GraphicsDeviceManager.GraphicsDevice, (int)size.X, (int)size.Y);
-            Color[] data = new Color[(int)size.X * (int)size.Y];
-            for (int i = 0; i < data.Length; ++i) data[i] = color;
+            Texture2D text = new Texture2D(GraphicsDeviceManager.GraphicsDevice, (int)_size.X, (int)_size.Y);
+            Color[] data = new Color[(int)_size.X * (int)_size.Y];
+            for (int i = 0; i < data.Length; ++i) data[i] = _color;
             text.SetData(data);
             return text;
         }

@@ -8,7 +8,7 @@ namespace MapRogueLike
     {
         Room room;
         public Vector2 position;
-        public static readonly Vector2 size = new Vector2(1);
+        public static readonly Vector2 size = new Vector2(2);
 
         public Texture2D texture = null;
 
@@ -18,6 +18,13 @@ namespace MapRogueLike
         {
             room = _room;
             texture = Tool.CreateRectangleTexture(size, Color.PaleVioletRed);
+            position = _position;
+        }
+
+        public Tile(Vector2 _position, Room _room, Color color)
+        {
+            room = _room;
+            texture = Tool.CreateRectangleTexture(size, color);
             position = _position;
         }
 
