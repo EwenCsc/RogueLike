@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -29,6 +30,7 @@ namespace MapRogueLike
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            AssetManager.Instance.Content = Content;
             map = new Map();
             base.Initialize();
         }
@@ -80,7 +82,7 @@ namespace MapRogueLike
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin();
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
             map.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);

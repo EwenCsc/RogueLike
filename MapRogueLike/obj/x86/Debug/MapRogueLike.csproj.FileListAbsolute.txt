@@ -44,3 +44,4 @@ D:\ProjetPerso\RogueLike\RogueLike\MapRogueLike\obj\x86\Debug\MapRogueLike.cspro
 D:\ProjetPerso\RogueLike\RogueLike\MapRogueLike\obj\x86\Debug\MapRogueLike.csproj.CopyComplete
 D:\ProjetPerso\RogueLike\RogueLike\MapRogueLike\obj\x86\Debug\MapRogueLike.exe
 D:\ProjetPerso\RogueLike\RogueLike\MapRogueLike\obj\x86\Debug\MapRogueLike.pdb
+D:\ProjetPerso\MapRogueLike\MapRogueLike\bin\Windows\x86\Debug\Content\Sprites\Rooms.xnb

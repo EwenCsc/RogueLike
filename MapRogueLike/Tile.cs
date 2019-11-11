@@ -8,7 +8,7 @@ namespace MapRogueLike
     {
         Room room;
         public Vector2 position;
-        public static readonly Vector2 size = new Vector2(2);
+        public static readonly Vector2 size = new Vector2(1);
 
         public Texture2D texture = null;
 

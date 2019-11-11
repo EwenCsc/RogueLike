@@ -9,14 +9,23 @@ namespace MapRogueLike
     {
         public static int cpt = 0;
 
+        IDrawableAsset drawableAsset = null;
+        
         public bool isEmpty = false;
         Vector2 emplacement;
         static readonly Vector2 tilingDimension = new Vector2(16, 9);
         public static Vector2 Size => new Vector2(tilingDimension.X * Tile.size.X, tilingDimension.Y * Tile.size.Y);
+        //public static Vector2 Size => new Vector2(tilingDimension.X * Tile.size.X, tilingDimension.Y * Tile.size.Y);
         //public static Vector2 Size => new Vector2(tilingDimension.X + (tilingDimension.X * Tile.size.X - 1), tilingDimension.Y + (tilingDimension.Y * Tile.size.Y - 1));
-
         List<Tile> tiles = new List<Tile>();
         private Vector4 oppeningDirections;
+        public string OppeningDirectionsString
+        {
+            get
+            {
+                return oppeningDirections.X.ToString() + oppeningDirections.Y.ToString() + oppeningDirections.Z.ToString() + oppeningDirections.W.ToString();
+            }
+        }
 
         public Vector2 Emplacement => emplacement;
         //public Vector2 Position => new Vector2(emplacement.X + (emplacement.X * (Size.X  - 1)), emplacement.Y + (emplacement.Y * (Size.Y - 1)));
@@ -49,6 +58,10 @@ namespace MapRogueLike
             oppeningDirections = _oppeningDirections;
 
             List<int> doorTiles = new List<int>();
+            if (AssetManager.Instance.DrawableAssets[OppeningDirectionsString] != null)
+            {
+                drawableAsset = AssetManager.Instance.DrawableAssets[OppeningDirectionsString];
+            }
             if (!isEmpty)
             {
                 GenerateTiles();
@@ -71,28 +84,24 @@ namespace MapRogueLike
                 {
                     nextOppeningDirections.Y = 1;
                     Vector2 tmpEmp = emplacement - Vector2.UnitY;
-                    Console.WriteLine(tmpEmp);
                     _map.Rooms[(int)tmpEmp.X, (int)tmpEmp.Y] = new Room(tmpEmp, nextOppeningDirections, _map, new Vector4(0, 1, 0, 0));
                 }
                 if (oppeningDirections.Y == 1 && forbiddenDirection.Y == 0 && emplacement.Y + 1 < _map.MapSize.Y)
                 {
                     nextOppeningDirections.X = 1;
                     Vector2 tmpEmp = emplacement + Vector2.UnitY;
-                    Console.WriteLine(tmpEmp);
                     _map.Rooms[(int)tmpEmp.X, (int)tmpEmp.Y] = new Room(tmpEmp, nextOppeningDirections, _map, new Vector4(1, 0, 0, 0));
                 }
                 if (oppeningDirections.Z == 1 && forbiddenDirection.Z == 0 && emplacement.X - 1 >= 0)
                 {
                     nextOppeningDirections.W = 1;
                     Vector2 tmpEmp = emplacement - Vector2.UnitX;
-                    Console.WriteLine(tmpEmp);
                     _map.Rooms[(int)tmpEmp.X, (int)tmpEmp.Y] = new Room(tmpEmp, nextOppeningDirections, _map, new Vector4(0, 0, 0, 1));
                 }
                 if (oppeningDirections.W == 1 && forbiddenDirection.W == 0 && emplacement.X + 1 < _map.MapSize.X)
                 {
                     nextOppeningDirections.Z = 1;
                     Vector2 tmpEmp = emplacement + Vector2.UnitX;
-                    Console.WriteLine(tmpEmp);
                     _map.Rooms[(int)tmpEmp.X, (int)tmpEmp.Y] = new Room(tmpEmp, nextOppeningDirections, _map, new Vector4(0, 0, 1, 0));
                 }
             }
@@ -107,7 +116,7 @@ namespace MapRogueLike
                     Tile tile = new Tile(new Vector2(i, j), this);
                     if ((tilingDimension.X / 2) % 2 == 0)
                     {
-                        if (i == (int)(tilingDimension.X / 2) || i == (int)(tilingDimension.X / 2) - 1)
+                        if (i == (int)(tilingDimension.X / 2) || i == (int)(tilingDimension.X / 2) - 1 || i == (int)(tilingDimension.X / 2) + 1 || i == (int)(tilingDimension.X / 2) - 2)
                         {
                             if ((oppeningDirections.X == 1 && j == 0) || (oppeningDirections.Y == 1 && j == tilingDimension.Y - 1))
                                 tile = new Tile(new Vector2(i, j), this, Color.Black);
@@ -123,7 +132,7 @@ namespace MapRogueLike
                     }
                     if ((tilingDimension.Y / 2) % 2 == 0)
                     {
-                        if (j == (int)(tilingDimension.Y / 2) || j == (int)(tilingDimension.Y / 2) - 1)
+                        if (j == (int)(tilingDimension.Y / 2) || j == (int)(tilingDimension.Y / 2) - 1 || j == (int)(tilingDimension.Y / 2) + 1 || j == (int)(tilingDimension.Y / 2) - 2)
                         {
                             if ((oppeningDirections.Z == 1 && i == 0) || (oppeningDirections.W == 1 && i == tilingDimension.X - 1))
                                 tile = new Tile(new Vector2(i, j), this, Color.Black);
@@ -177,7 +186,11 @@ namespace MapRogueLike
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (!isEmpty)
+            if (drawableAsset != null)
+            {
+                spriteBatch.Draw(drawableAsset.GetTexture(), Position, null, Color.White, 0, Vector2.Zero, Tile.size.X, SpriteEffects.None, 0);
+            }
+            else if (!isEmpty)
             {
                 foreach (Tile tile in tiles)
                 {
