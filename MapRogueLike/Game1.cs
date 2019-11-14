@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MapRogueLike.V2;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,8 +13,8 @@ namespace MapRogueLike
     {
         public static GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-
-        Map map;
+        
+        V2.Map map2;
 
         public Game1()
         {
@@ -31,7 +32,8 @@ namespace MapRogueLike
         {
             // TODO: Add your initialization logic here
             AssetManager.Instance.Content = Content;
-            map = new Map();
+            //map = new Map();
+            map2 = new V2.Map();
             base.Initialize();
         }
 
@@ -65,11 +67,14 @@ namespace MapRogueLike
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-
+            
             // TODO: Add your update logic here
-            KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.F1))
-                map = new Map();
+            Input.Update();
+            if (Input.GetKeyDown(Keys.R))
+            {
+                map2 = new V2.Map();
+            }
+
             base.Update(gameTime);
         }
 
@@ -83,7 +88,7 @@ namespace MapRogueLike
 
             // TODO: Add your drawing code here
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
-            map.Draw(spriteBatch);
+            map2.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);
         }

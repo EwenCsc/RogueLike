@@ -55,6 +55,11 @@
     <Compile Include="Sprite.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Tool.cs" />
+    <Compile Include="V2\Input.cs" />
+    <Compile Include="V2\Map.cs" />
+    <Compile Include="V2\MathHelper.cs" />
+    <Compile Include="V2\Room.cs" />
+    <Compile Include="V2\Vector2i.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

@@ -26,6 +26,8 @@ namespace MapRogueLike
 
         public Dictionary<string, IDrawableAsset> DrawableAssets => drawableAssets;
 
+        bool log = false;
+
         public ContentManager Content
         {
             set
@@ -79,9 +81,10 @@ namespace MapRogueLike
                     index++;
                 }
             }
-            text.SetData<Color>(colorSprite);
+            text.SetData(colorSprite);
             drawableAssets.Add(key, new Sprite(text));
-            Console.WriteLine("Texture : {0} {1} chargée!", key, (drawableAssets.ContainsKey(key)) ? "" : "non");
+            if (log)
+                Console.WriteLine("Texture : {0} {1} chargée!", key, (drawableAssets.ContainsKey(key)) ? "" : "non");
         }
     }
 }
