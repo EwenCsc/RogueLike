@@ -12,7 +12,8 @@ namespace MapRogueLike.V2
     {
         Vector2i gridPos;
         Vector4 openedDoors = new Vector4(-1, -1, -1,-1);
-        IDrawableAsset sprite = null;
+        IDrawableAsset miniMapSprite = null;
+        List<IDrawableAsset> roomTiles = new List<IDrawableAsset>();
 
         public Vector4 OpenedDoors => openedDoors;
         public Vector2i GripPos => gridPos;
@@ -34,11 +35,19 @@ namespace MapRogueLike.V2
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            //if (sprite != null)
+            if (miniMapSprite != null)
             {
-                Texture2D texture = sprite.GetTexture();
+                Texture2D texture = miniMapSprite.GetTexture();
                 Vector2 pos = new Vector2(texture.Bounds.Width * gridPos.X, texture.Bounds.Height * gridPos.Y);
-                spriteBatch.Draw(texture, pos, Color.White);
+                Vector2 offset = new Vector2(Tool.GraphicsDeviceManager.PreferredBackBufferWidth - (16/*Map width*/ * 16/*sprite Width*/), 0);
+                spriteBatch.Draw(texture, pos + offset, Color.White);
+            }
+            for (int i = 0; i < roomTiles.Count; i++)
+            {
+                IDrawableAsset drawable = roomTiles[i];
+                Texture2D text = drawable.GetTexture();
+                Vector2 pos = Vector2.Zero;
+                spriteBatch.Draw(text, pos, Color.White);
             }
         }
         
@@ -50,7 +59,7 @@ namespace MapRogueLike.V2
 
         private void SetSprite()
         {
-            sprite = AssetManager.Instance.DrawableAssets[openedDoors.X + "" + openedDoors.Y + "" + openedDoors.Z + "" + openedDoors.W];
+            miniMapSprite = AssetManager.Instance.DrawableAssets[openedDoors.X + "" + openedDoors.Y + "" + openedDoors.Z + "" + openedDoors.W];
         }
     }
 }

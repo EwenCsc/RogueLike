@@ -45,3 +45,6 @@ D:\ProjetPerso\RogueLike\RogueLike\MapRogueLike\obj\x86\Debug\MapRogueLike.cspro
 D:\ProjetPerso\RogueLike\RogueLike\MapRogueLike\obj\x86\Debug\MapRogueLike.exe
 D:\ProjetPerso\RogueLike\RogueLike\MapRogueLike\obj\x86\Debug\MapRogueLike.pdb
 D:\ProjetPerso\MapRogueLike\MapRogueLike\bin\Windows\x86\Debug\Content\Sprites\Rooms.xnb
+D:\ProjetPerso\MapRogueLike\MapRogueLike\bin\Windows\x86\Debug\Content\Sprites\Brick.xnb
+D:\ProjetPerso\MapRogueLike\MapRogueLike\bin\Windows\x86\Debug\Content\Sprites\Dirt.xnb
+D:\ProjetPerso\MapRogueLike\MapRogueLike\bin\Windows\x86\Debug\Content\Sprites\Lava.xnb

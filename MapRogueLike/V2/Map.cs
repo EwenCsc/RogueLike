@@ -12,12 +12,13 @@ namespace MapRogueLike.V2
     class Map
     {
         Room[,] roomGrid;
-        int gridSize = 25;
+        int gridSize = 16;
         int nbRooms = 25;
         List<Vector2i> takenRooms = new List<Vector2i>();
         
         public Map()
         {
+            roomGrid = new Room[gridSize, gridSize];
             InitRooms();
             CreateRooms();
             SetConnectionWithNeighbours();
@@ -25,9 +26,6 @@ namespace MapRogueLike.V2
 
         private void CreateRooms()
         {
-            Random rnd = new Random();
-
-            roomGrid = new Room[gridSize, gridSize];
             Room room = null;
             Vector2i gridPos = new Vector2i(roomGrid.GetLength(0) / 2, roomGrid.GetLength(1) / 2);
 
@@ -54,7 +52,7 @@ namespace MapRogueLike.V2
 
                     // Regarde si la pièce a plus d'un voisin + proba de passer si y'a bcp de pièces
                     // Pour plus de détails / avoir des branches
-                    if (NumberOfNeighbours(gridPos) > 1 && (float)rnd.NextDouble() > randomCompare)
+                    if (NumberOfNeighbours(gridPos) > 1 && (float)new Random().NextDouble() > randomCompare)
                     {
                         int iterations = 0;
                         do
@@ -124,6 +122,11 @@ namespace MapRogueLike.V2
 
         private int NumberOfNeighbours(Vector2i _pos)
         {
+            //return
+            //    ((takenRooms.Contains(_pos + Vector2i.UnitX)) ? 1 : 0) +
+            //    ((takenRooms.Contains(_pos - Vector2i.UnitX)) ? 1 : 0) +
+            //    ((takenRooms.Contains(_pos + Vector2i.UnitY)) ? 1 : 0) +
+            //    ((takenRooms.Contains(_pos - Vector2i.UnitY)) ? 1 : 0);
             int result = 0;
             if (takenRooms.Contains(_pos + Vector2i.UnitX))
             {
