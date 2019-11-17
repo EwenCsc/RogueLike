@@ -60,6 +60,30 @@ namespace MapRogueLike.V2
         private void SetSprite()
         {
             miniMapSprite = AssetManager.Instance.DrawableAssets[openedDoors.X + "" + openedDoors.Y + "" + openedDoors.Z + "" + openedDoors.W];
+            SetRoomTiles();
+        }
+
+        private void SetRoomTiles()
+        {
+            Texture2D text = miniMapSprite.GetTexture();
+            Color[] data = new Color[text.Width * text.Height];
+            text.GetData(data);
+            for (int i = 0; i < data.Length; i++)
+            {
+                Color c = data[i];
+                if (c == new Color(255, 0, 0))
+                {
+                    roomTiles.Add(new Sprite(AssetManager.Instance.DrawableAssets["Lava"].GetTexture()));
+                }
+                else if (c == new Color(126, 91, 62))
+                {
+                    roomTiles.Add(new Sprite(AssetManager.Instance.DrawableAssets["Dirt"].GetTexture()));
+                }
+                else if (c == new Color(0, 0, 0))
+                {
+                    roomTiles.Add(new Sprite(AssetManager.Instance.DrawableAssets["Brick"].GetTexture()));
+                }
+            }
         }
     }
 }

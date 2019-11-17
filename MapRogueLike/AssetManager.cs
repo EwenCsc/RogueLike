@@ -42,7 +42,7 @@ namespace MapRogueLike
             // SpriteSheet
             spriteSheets.Add("Rooms", content.Load<Texture2D>("Sprites/Rooms"));
 
-            // Rooms
+            // Mini Map Rooms
             {
             AddDrawableAsset("0000", spriteSheets["Rooms"], new Rectangle(0, 0, 16, 9));
             AddDrawableAsset("1000", spriteSheets["Rooms"], new Rectangle(16, 0, 16, 9));
@@ -61,10 +61,32 @@ namespace MapRogueLike
             AddDrawableAsset("1110", spriteSheets["Rooms"], new Rectangle(224, 0, 16, 9));
             AddDrawableAsset("1111", spriteSheets["Rooms"], new Rectangle(240, 0, 16, 9));
             }
+
+            // Room Tiles
+            AddDrawableAsset("Lava", content.Load<Texture2D>("Sprites/Lava"));
+            AddDrawableAsset("Brick", content.Load<Texture2D>("Sprites/Brick"));
+            AddDrawableAsset("Dirt", content.Load<Texture2D>("Sprites/Dirt"));
+        }
+
+        private void AddDrawableAsset(string key, Texture2D texture)
+        {
+            if (drawableAssets.ContainsKey(key) && log)
+            {
+                Console.WriteLine("Texture : {0} déja existante!", key);
+                return;
+            }
+            drawableAssets.Add(key, new Sprite(texture));
+            if (log)
+                Console.WriteLine("Texture : {0} {1} chargée!", key, (drawableAssets.ContainsKey(key)) ? "" : "non");
         }
 
         private void AddDrawableAsset(string key, Texture2D spriteSheet, Rectangle source)
         {
+            if (drawableAssets.ContainsKey(key) && log)
+            {
+                Console.WriteLine("Texture : {0} déja existante!", key);
+                return;
+            }
             Texture2D text = new Texture2D(Game1.graphics.GraphicsDevice, source.Width, source.Height);
             Color[] colorSpriteSheet = new Color[spriteSheet.Width * spriteSheet.Height];
             Color[] colorSprite = new Color[text.Width * text.Height];
