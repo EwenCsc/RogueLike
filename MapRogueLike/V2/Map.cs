@@ -24,6 +24,17 @@ namespace MapRogueLike.V2
             SetConnectionWithNeighbours();
         }
 
+        public void Draw(SpriteBatch spriteBatch)
+        {
+            for (int i = 0; i < roomGrid.GetLength(0); i++)
+            {
+                for (int j = 0; j < roomGrid.GetLength(1); j++)
+                {
+                    roomGrid[i, j].Draw(spriteBatch);
+                }
+            }
+        }
+
         private void CreateRooms()
         {
             Room room = null;
@@ -38,7 +49,7 @@ namespace MapRogueLike.V2
             {
                 if (i == 0)
                 {
-                    room = new Room(gridPos, Vector4.One);
+                    room = new Room(gridPos);
                 }
                 else
                 {
@@ -71,7 +82,22 @@ namespace MapRogueLike.V2
 
         private void SetConnectionWithNeighbours()
         {
-            roomGrid.Cast<Room>().ToList().FindAll(x => takenRooms.Contains(x.GripPos)).ForEach(y => y.SetOpenedRooms(Vector4.One));
+            for (int i = 0; i < roomGrid.GetLength(0); i++)
+            {
+                for (int j = 0; j < roomGrid.GetLength(1); j++)
+                {
+                    if (takenRooms.Contains(roomGrid[i, j].GripPos))
+                    {
+                        Room room = roomGrid[i, j];
+                        Vector4 open = new Vector4();
+                        open.X = takenRooms.Contains(room.GripPos - Vector2i.UnitY) ? 1 : 0;
+                        open.Y = takenRooms.Contains(room.GripPos + Vector2i.UnitY) ? 1 : 0;
+                        open.Z = takenRooms.Contains(room.GripPos - Vector2i.UnitX) ? 1 : 0;
+                        open.W = takenRooms.Contains(room.GripPos + Vector2i.UnitX) ? 1 : 0;
+                        room.SetOpenedRooms(open);
+                    }
+                }
+            }
         }
 
         private Vector2i GetEmptyRoomPosWithNeighbourgs()
@@ -122,11 +148,6 @@ namespace MapRogueLike.V2
 
         private int NumberOfNeighbours(Vector2i _pos)
         {
-            //return
-            //    ((takenRooms.Contains(_pos + Vector2i.UnitX)) ? 1 : 0) +
-            //    ((takenRooms.Contains(_pos - Vector2i.UnitX)) ? 1 : 0) +
-            //    ((takenRooms.Contains(_pos + Vector2i.UnitY)) ? 1 : 0) +
-            //    ((takenRooms.Contains(_pos - Vector2i.UnitY)) ? 1 : 0);
             int result = 0;
             if (takenRooms.Contains(_pos + Vector2i.UnitX))
             {
@@ -153,26 +174,8 @@ namespace MapRogueLike.V2
             {
                 for (int j = 0; j < roomGrid.GetLength(1); j++)
                 {
-                    AddRoom(i, j, true);
-                }
-            }
-        }
-
-        private void AddRoom(int _i, int _j, bool _isEmpty = false)
-        {
-            if (_isEmpty)
-            {
-                roomGrid[_i, _j] = new Room(new Vector2i(_i, _j), Vector4.Zero);
-            }
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            for (int i = 0; i < roomGrid.GetLength(0); i++)
-            {
-                for (int j = 0; j < roomGrid.GetLength(1); j++)
-                {
-                    roomGrid[i, j].Draw(spriteBatch);
+                    roomGrid[i, j] = new Room(new Vector2i(i, j));
+                    roomGrid[i, j].SetOpenedRooms(Vector4.Zero);
                 }
             }
         }

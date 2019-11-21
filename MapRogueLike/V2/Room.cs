@@ -13,21 +13,11 @@ namespace MapRogueLike.V2
         Vector2i gridPos;
         Vector4 openedDoors = new Vector4(-1, -1, -1,-1);
         IDrawableAsset miniMapSprite = null;
-        List<IDrawableAsset> roomTiles = new List<IDrawableAsset>();
+        Dictionary<Vector2, IDrawableAsset> roomTiles = new Dictionary<Vector2, IDrawableAsset>();
 
         public Vector4 OpenedDoors => openedDoors;
         public Vector2i GripPos => gridPos;
-
-        /// <summary>
-        /// Set [i, j] Room
-        /// </summary>
-        /// <param name="_openedDoors">0 -> Up, 1 -> Down, 2 -> Left, 3 -> Right</param>
-        public Room(Vector2i _gridPos, Vector4 _openedDoors)
-        {
-            gridPos = _gridPos;
-            SetOpenedRooms(_openedDoors);
-        }
-
+        
         public Room (Vector2i _gridPos)
         {
             gridPos = _gridPos;
@@ -35,6 +25,7 @@ namespace MapRogueLike.V2
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            // MiniMap
             if (miniMapSprite != null)
             {
                 Texture2D texture = miniMapSprite.GetTexture();
@@ -42,12 +33,15 @@ namespace MapRogueLike.V2
                 Vector2 offset = new Vector2(Tool.GraphicsDeviceManager.PreferredBackBufferWidth - (16/*Map width*/ * 16/*sprite Width*/), 0);
                 spriteBatch.Draw(texture, pos + offset, Color.White);
             }
-            for (int i = 0; i < roomTiles.Count; i++)
+            // Real Map
+            foreach (KeyValuePair<Vector2, IDrawableAsset> tile in roomTiles)
             {
-                IDrawableAsset drawable = roomTiles[i];
+                IDrawableAsset drawable = tile.Value;
+                Vector2 pos = tile.Key;
+
                 Texture2D text = drawable.GetTexture();
-                Vector2 pos = Vector2.Zero;
-                spriteBatch.Draw(text, pos, Color.White);
+                float scale = 0.2f;
+                spriteBatch.Draw(text, pos * scale, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
             }
         }
         
@@ -70,18 +64,27 @@ namespace MapRogueLike.V2
             text.GetData(data);
             for (int i = 0; i < data.Length; i++)
             {
+                Vector2 pos =
+                    new Vector2(i % text.Width, i / text.Width) * new Vector2(32)
+                    + new Vector2(32 * text.Width * gridPos.X, 32 * text.Height * gridPos.Y);
+                if (gridPos == Vector2i.UnitX)
+                {
+                    Console.WriteLine(new Vector2(32 * text.Width * gridPos.X, 32 * text.Height * gridPos.Y));
+                    Console.WriteLine(pos);
+                }
+
                 Color c = data[i];
                 if (c == new Color(255, 0, 0))
                 {
-                    roomTiles.Add(new Sprite(AssetManager.Instance.DrawableAssets["Lava"].GetTexture()));
+                    roomTiles.Add(pos, new Sprite(AssetManager.Instance.DrawableAssets["Lava"].GetTexture()));
                 }
                 else if (c == new Color(126, 91, 62))
                 {
-                    roomTiles.Add(new Sprite(AssetManager.Instance.DrawableAssets["Dirt"].GetTexture()));
+                    roomTiles.Add(pos, new Sprite(AssetManager.Instance.DrawableAssets["Dirt"].GetTexture()));
                 }
                 else if (c == new Color(0, 0, 0))
                 {
-                    roomTiles.Add(new Sprite(AssetManager.Instance.DrawableAssets["Brick"].GetTexture()));
+                    roomTiles.Add(pos, new Sprite(AssetManager.Instance.DrawableAssets["Brick"].GetTexture()));
                 }
             }
         }

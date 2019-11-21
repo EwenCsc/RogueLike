@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace MapRogueLike
 {
@@ -15,10 +16,15 @@ namespace MapRogueLike
         SpriteBatch spriteBatch;
         
         V2.Map map2;
+        Camera cam;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            // Defaut = 800, 480
+            graphics.PreferredBackBufferWidth *= 2;
+            graphics.PreferredBackBufferHeight *= 2;
+            graphics.ApplyChanges();
             Content.RootDirectory = "Content";
         }
 
@@ -32,7 +38,7 @@ namespace MapRogueLike
         {
             // TODO: Add your initialization logic here
             AssetManager.Instance.Content = Content;
-            //map = new Map();
+            cam = new Camera(graphics.GraphicsDevice.Viewport);
             map2 = new V2.Map();
             base.Initialize();
         }
@@ -84,10 +90,10 @@ namespace MapRogueLike
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp/*, null, null, null, cam.Transform*/);
             map2.Draw(spriteBatch);
             spriteBatch.End();
             base.Draw(gameTime);

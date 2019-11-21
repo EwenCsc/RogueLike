@@ -55,7 +55,9 @@
     <Compile Include="Sprite.cs" />
     <Compile Include="Tile.cs" />
     <Compile Include="Tool.cs" />
+    <Compile Include="V2\Camera.cs" />
     <Compile Include="V2\Input.cs" />
+    <Compile Include="V2\KeyBinds.cs" />
     <Compile Include="V2\Map.cs" />
     <Compile Include="V2\MathHelper.cs" />
     <Compile Include="V2\Room.cs" />
