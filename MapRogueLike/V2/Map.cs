@@ -36,6 +36,11 @@ namespace MapRogueLike
             }
         }
 
+        internal void Update(GameTime gameTime)
+        {
+
+        }
+
         private void CreateRooms()
         {
             Room room = null;

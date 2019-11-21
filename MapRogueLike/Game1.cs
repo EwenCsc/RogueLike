@@ -12,35 +12,13 @@ namespace MapRogueLike
     /// </summary>
     public class Game1 : Game
     {
-        public static GraphicsDeviceManager graphics;
+        public GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
-        Map map2;
-        Camera cam;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
-            // Defaut = 800, 480
-            graphics.PreferredBackBufferWidth *= 2;
-            graphics.PreferredBackBufferHeight *= 2;
-            graphics.ApplyChanges();
             Content.RootDirectory = "Content";
-        }
-
-        /// <summary>
-        /// Allows the game to perform any initialization it needs to before starting to run.
-        /// This is where it can query for any required services and load any non-graphic
-        /// related content.  Calling base.Initialize will enumerate through any components
-        /// and initialize them as well.
-        /// </summary>
-        protected override void Initialize()
-        {
-            // TODO: Add your initialization logic here
-            AssetManager.Instance.Content = Content;
-            cam = new Camera(graphics.GraphicsDevice.Viewport);
-            map2 = new Map();
-            base.Initialize();
         }
 
         /// <summary>
@@ -56,12 +34,16 @@ namespace MapRogueLike
         }
 
         /// <summary>
-        /// UnloadContent will be called once per game and is the place to unload
-        /// game-specific content.
+        /// Allows the game to perform any initialization it needs to before starting to run.
+        /// This is where it can query for any required services and load any non-graphic
+        /// related content.  Calling base.Initialize will enumerate through any components
+        /// and initialize them as well.
         /// </summary>
-        protected override void UnloadContent()
+        protected override void Initialize()
         {
-            // TODO: Unload any non ContentManager content here
+            // TODO: Add your initialization logic here
+            GameManager.Instance.Initialize(this);
+            base.Initialize();
         }
 
         /// <summary>
@@ -73,13 +55,9 @@ namespace MapRogueLike
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
-            
+
             // TODO: Add your update logic here
-            Input.Update();
-            if (Input.GetKeyDown(Keys.R))
-            {
-                map2 = new Map();
-            }
+            GameManager.Instance.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -93,10 +71,8 @@ namespace MapRogueLike
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp/*, null, null, null, cam.Transform*/);
-            map2.Draw(spriteBatch);
-            spriteBatch.End();
-            base.Draw(gameTime);
+            GameManager.Instance.Draw(spriteBatch);
+            base.Draw(gameTime); 
         }
     }
 }

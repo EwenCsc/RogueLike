@@ -87,7 +87,7 @@ namespace MapRogueLike.Engine
                 Console.WriteLine("Texture : {0} déja existante!", key);
                 return;
             }
-            Texture2D text = new Texture2D(Game1.graphics.GraphicsDevice, source.Width, source.Height);
+            Texture2D text = new Texture2D(GameManager.Instance.GraphicsDevice, source.Width, source.Height);
             Color[] colorSpriteSheet = new Color[spriteSheet.Width * spriteSheet.Height];
             Color[] colorSprite = new Color[text.Width * text.Height];
 

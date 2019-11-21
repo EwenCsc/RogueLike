@@ -46,15 +46,13 @@
   <ItemGroup>
     <Compile Include="Engine\Asset.cs" />
     <Compile Include="Engine\AssetManager.cs" />
+    <Compile Include="Engine\GameManager.cs" />
+    <Compile Include="V2\Player.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Engine\IDrawableAsset.cs" />
-    <Compile Include="OldAndBadWay\Map.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="OldAndBadWay\Room.cs" />
     <Compile Include="Engine\Sprite.cs" />
-    <Compile Include="OldAndBadWay\Tile.cs" />
-    <Compile Include="Engine\Tool.cs" />
     <Compile Include="Engine\Camera.cs" />
     <Compile Include="Engine\Input.cs" />
     <Compile Include="Engine\KeyBinds.cs" />

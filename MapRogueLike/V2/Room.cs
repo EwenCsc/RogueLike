@@ -28,7 +28,7 @@ namespace MapRogueLike
             {
                 Texture2D texture = miniMapSprite.GetTexture();
                 Vector2 pos = new Vector2(texture.Bounds.Width * gridPos.X, texture.Bounds.Height * gridPos.Y);
-                Vector2 offset = new Vector2(Tool.GraphicsDeviceManager.PreferredBackBufferWidth - (16/*Map width*/ * 16/*sprite Width*/), 0);
+                Vector2 offset = new Vector2(GameManager.Instance.WindowSize.X - (16/*Map width*/ * 16/*sprite Width*/), 0);
                 spriteBatch.Draw(texture, pos + offset, Color.White);
             }
             // Real Map
