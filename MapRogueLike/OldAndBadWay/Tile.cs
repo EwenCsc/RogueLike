@@ -1,8 +1,9 @@
-﻿using Microsoft.Xna.Framework;
+﻿using MapRogueLike.Engine;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
-namespace MapRogueLike
+namespace MapRogueLike.Deprecated
 {
     public class Tile
     {

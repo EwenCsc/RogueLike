@@ -1,4 +1,4 @@
-﻿namespace MapRogueLike
+﻿namespace MapRogueLike.Engine
 {
     public class Asset
     {

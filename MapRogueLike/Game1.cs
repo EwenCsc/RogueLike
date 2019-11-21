@@ -1,4 +1,4 @@
-﻿using MapRogueLike.V2;
+﻿using MapRogueLike.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,7 +15,7 @@ namespace MapRogueLike
         public static GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
         
-        V2.Map map2;
+        Map map2;
         Camera cam;
 
         public Game1()
@@ -39,7 +39,7 @@ namespace MapRogueLike
             // TODO: Add your initialization logic here
             AssetManager.Instance.Content = Content;
             cam = new Camera(graphics.GraphicsDevice.Viewport);
-            map2 = new V2.Map();
+            map2 = new Map();
             base.Initialize();
         }
 
@@ -78,7 +78,7 @@ namespace MapRogueLike
             Input.Update();
             if (Input.GetKeyDown(Keys.R))
             {
-                map2 = new V2.Map();
+                map2 = new Map();
             }
 
             base.Update(gameTime);

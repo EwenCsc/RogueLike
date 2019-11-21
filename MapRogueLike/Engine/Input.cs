@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Input;
 
-namespace MapRogueLike.V2
+namespace MapRogueLike.Engine
 {
     class Input
     {

@@ -44,24 +44,23 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Asset.cs" />
-    <Compile Include="AssetManager.cs" />
+    <Compile Include="Engine\Asset.cs" />
+    <Compile Include="Engine\AssetManager.cs" />
     <Compile Include="Game1.cs" />
-    <Compile Include="IDrawableAsset.cs" />
-    <Compile Include="Map.cs" />
+    <Compile Include="Engine\IDrawableAsset.cs" />
+    <Compile Include="OldAndBadWay\Map.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Room.cs" />
-    <Compile Include="Sprite.cs" />
-    <Compile Include="Tile.cs" />
-    <Compile Include="Tool.cs" />
-    <Compile Include="V2\Camera.cs" />
-    <Compile Include="V2\Input.cs" />
-    <Compile Include="V2\KeyBinds.cs" />
+    <Compile Include="OldAndBadWay\Room.cs" />
+    <Compile Include="Engine\Sprite.cs" />
+    <Compile Include="OldAndBadWay\Tile.cs" />
+    <Compile Include="Engine\Tool.cs" />
+    <Compile Include="Engine\Camera.cs" />
+    <Compile Include="Engine\Input.cs" />
+    <Compile Include="Engine\KeyBinds.cs" />
     <Compile Include="V2\Map.cs" />
-    <Compile Include="V2\MathHelper.cs" />
     <Compile Include="V2\Room.cs" />
-    <Compile Include="V2\Vector2i.cs" />
+    <Compile Include="Engine\Vector2i.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

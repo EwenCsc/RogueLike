@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MapRogueLike
+namespace MapRogueLike.Engine
 {
     public static class Tool
     {

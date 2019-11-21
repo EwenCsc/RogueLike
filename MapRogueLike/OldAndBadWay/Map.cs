@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace MapRogueLike
+namespace MapRogueLike.Deprecated
 {
     public class Map
     {

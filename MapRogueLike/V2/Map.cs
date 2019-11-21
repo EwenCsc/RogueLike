@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using MapRogueLike.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MapRogueLike.V2
+namespace MapRogueLike
 {
     /// <summary>
     /// Inspired by https://github.com/wbeaty/binding-of-isaac-style-procedural-generation.git

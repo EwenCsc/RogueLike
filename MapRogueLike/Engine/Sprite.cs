@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MapRogueLike
+namespace MapRogueLike.Engine
 {
     class Sprite : Asset, IDrawableAsset
     {

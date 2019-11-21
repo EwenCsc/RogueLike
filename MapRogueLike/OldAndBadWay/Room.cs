@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using MapRogueLike.Engine;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace MapRogueLike
+namespace MapRogueLike.Deprecated
 {
     public class Room
     {

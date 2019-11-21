@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Input;
 
-namespace MapRogueLike.V2
+namespace MapRogueLike.Engine
 {
     public class KeyBinds
     {
