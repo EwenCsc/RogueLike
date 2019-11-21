@@ -12,6 +12,7 @@ namespace MapRogueLike.V2
         static KeyboardState state = Keyboard.GetState();
         static List<Keys> lastKeys = new List<Keys>();
         static List<Keys> currentKeys = new List<Keys>();
+
         public static void Update()
         {
             lastKeys = currentKeys;
