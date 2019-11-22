@@ -14,6 +14,7 @@ namespace MapRogueLike
     {
         public GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        GameManager gameManager;
 
         public Game1()
         {
@@ -42,7 +43,8 @@ namespace MapRogueLike
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            GameManager.Instance.Initialize(this);
+            gameManager = ToolBox.Instance.Get<GameManager>();
+            gameManager.Initialize(this);
             base.Initialize();
         }
 
@@ -57,7 +59,7 @@ namespace MapRogueLike
                 Exit();
 
             // TODO: Add your update logic here
-            GameManager.Instance.Update(gameTime);
+            gameManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -71,7 +73,7 @@ namespace MapRogueLike
             GraphicsDevice.Clear(Color.Black);
 
             // TODO: Add your drawing code here
-            GameManager.Instance.Draw(spriteBatch);
+            gameManager.Draw(spriteBatch);
             base.Draw(gameTime); 
         }
     }

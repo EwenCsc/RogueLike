@@ -5,8 +5,21 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MapRogueLike.Engine
 {
-    public class GameManager : Singleton<GameManager>
+    public class GameManager : /*Singleton<GameManager>*/ Manager
     {
+        //private static GameManager instance = null;
+        //public static GameManager Instance
+        //{
+        //    get
+        //    {
+        //        if (instance == null)
+        //        {
+        //            instance = new GameManager();
+        //        }
+        //        return instance;
+        //    }
+        //}
+
         Game1 Game = null;
         Map map;
         Camera cam;
@@ -19,7 +32,7 @@ namespace MapRogueLike.Engine
         public void Initialize(Game1 game)
         {
             Game = game;
-            AssetManager.Instance.Content = game.Content;
+            ToolBox.Instance.Get<AssetManager>().Content = game.Content;
             Game.graphics.PreferredBackBufferWidth *= 2;
             Game.graphics.PreferredBackBufferHeight *= 2;
             Game.graphics.ApplyChanges();
@@ -28,7 +41,7 @@ namespace MapRogueLike.Engine
             player = new Player();
         }
 
-        public void Update(GameTime gameTime)
+        public override void Update(GameTime gameTime)
         {
             Input.Update();
             if (Input.GetKeyDown(Keys.R))

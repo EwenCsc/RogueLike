@@ -46,6 +46,8 @@
   <ItemGroup>
     <Compile Include="Engine\Asset.cs" />
     <Compile Include="Engine\AssetManager.cs" />
+    <Compile Include="Engine\Manager.cs" />
+    <Compile Include="Engine\ToolBox.cs" />
     <Compile Include="Engine\GameManager.cs" />
     <Compile Include="Engine\Singleton.cs" />
     <Compile Include="V2\Player.cs" />

@@ -4,10 +4,10 @@ namespace MapRogueLike.Engine
 {
     public class KeyBinds
     {
-        public static Keys cameraMoveUp = Keys.Z;
-        public static Keys cameraMoveDown = Keys.S;
-        public static Keys cameraMoveLeft = Keys.Q;
-        public static Keys cameraMoveRight = Keys.D;
+        private static Keys cameraMoveUp = Keys.Z;
+        private static Keys cameraMoveDown = Keys.S;
+        private static Keys cameraMoveLeft = Keys.Q;
+        private static Keys cameraMoveRight = Keys.D;
 
         public static Keys CameraMoveUp => CameraMoveUp;
         public static Keys CameraMoveDown => CameraMoveDown;

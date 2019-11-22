@@ -28,7 +28,7 @@ namespace MapRogueLike
             {
                 Texture2D texture = miniMapSprite.GetTexture();
                 Vector2 pos = new Vector2(texture.Bounds.Width * gridPos.X, texture.Bounds.Height * gridPos.Y);
-                Vector2 offset = new Vector2(GameManager.Instance.WindowSize.X - (16/*Map width*/ * 16/*sprite Width*/), 0);
+                Vector2 offset = new Vector2(ToolBox.Instance.Get<GameManager>().WindowSize.X - (16/*Map width*/ * 16/*sprite Width*/), 0);
                 spriteBatch.Draw(texture, pos + offset, Color.White);
             }
             // Real Map
@@ -51,7 +51,7 @@ namespace MapRogueLike
 
         private void SetSprite()
         {
-            miniMapSprite = AssetManager.Instance.DrawableAssets[openedDoors.X + "" + openedDoors.Y + "" + openedDoors.Z + "" + openedDoors.W];
+            miniMapSprite = ToolBox.Instance.Get<AssetManager>().DrawableAssets[openedDoors.X + "" + openedDoors.Y + "" + openedDoors.Z + "" + openedDoors.W];
             SetRoomTiles();
         }
 
@@ -74,15 +74,15 @@ namespace MapRogueLike
                 Color c = data[i];
                 if (c == new Color(255, 0, 0))
                 {
-                    roomTiles.Add(pos, new Sprite(AssetManager.Instance.DrawableAssets["Lava"].GetTexture()));
+                    roomTiles.Add(pos, new Sprite(ToolBox.Instance.Get<AssetManager>().DrawableAssets["Lava"].GetTexture()));
                 }
                 else if (c == new Color(126, 91, 62))
                 {
-                    roomTiles.Add(pos, new Sprite(AssetManager.Instance.DrawableAssets["Dirt"].GetTexture()));
+                    roomTiles.Add(pos, new Sprite(ToolBox.Instance.Get<AssetManager>().DrawableAssets["Dirt"].GetTexture()));
                 }
                 else if (c == new Color(0, 0, 0))
                 {
-                    roomTiles.Add(pos, new Sprite(AssetManager.Instance.DrawableAssets["Brick"].GetTexture()));
+                    roomTiles.Add(pos, new Sprite(ToolBox.Instance.Get<AssetManager>().DrawableAssets["Brick"].GetTexture()));
                 }
             }
         }

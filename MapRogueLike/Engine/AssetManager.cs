@@ -6,9 +6,20 @@ using System.Collections.Generic;
 
 namespace MapRogueLike.Engine
 {
-    public class AssetManager : Singleton<AssetManager>
+    public class AssetManager : /*Singleton<AssetManager>*/ Manager
     {
         private ContentManager content;
+
+        //private static AssetManager instance = null;
+        //public static AssetManager Instance
+        //{
+        //    get
+        //    {
+        //        if (instance == null)
+        //            instance = new AssetManager();
+        //        return instance;
+        //    }
+        //}
 
         private Dictionary<string, Texture2D> spriteSheets = new Dictionary<string, Texture2D>();
         private Dictionary<string, IDrawableAsset> drawableAssets = new Dictionary<string, IDrawableAsset>();
@@ -76,7 +87,7 @@ namespace MapRogueLike.Engine
                 Console.WriteLine("Texture : {0} déja existante!", key);
                 return;
             }
-            Texture2D text = new Texture2D(GameManager.Instance.GraphicsDevice, source.Width, source.Height);
+            Texture2D text = new Texture2D(ToolBox.Instance.Get<GameManager>().GraphicsDevice, source.Width, source.Height);
             Color[] colorSpriteSheet = new Color[spriteSheet.Width * spriteSheet.Height];
             Color[] colorSprite = new Color[text.Width * text.Height];
 
