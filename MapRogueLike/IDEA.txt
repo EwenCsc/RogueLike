@@ -1,0 +1,3 @@
+Avoir les trois classes qui sont toujours la et qui ont des auto attaque quand elle est pas use
+et on prend le controle sur une des classes pour faire des trucs spé
+Il faut adapter les autos attaques pour gagner
