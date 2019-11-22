@@ -5,27 +5,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace MapRogueLike.Engine
 {
-    public class GameManager
+    public class GameManager : Singleton<GameManager>
     {
-        private static GameManager instance = null;
-        public static GameManager Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new GameManager();
-                }
-                return instance;
-            }
-        }
-
         Game1 Game = null;
         Map map;
         Camera cam;
         Player player;
 
-        private GameManager()
+        public GameManager()
         {
         }
 

@@ -6,20 +6,9 @@ using System.Collections.Generic;
 
 namespace MapRogueLike.Engine
 {
-    public class AssetManager
+    public class AssetManager : Singleton<AssetManager>
     {
         private ContentManager content;
-
-        private static AssetManager instance = null;
-        public static AssetManager Instance
-        {
-            get
-            {
-                if (instance == null)
-                    instance = new AssetManager();
-                return instance;
-            }
-        }
 
         private Dictionary<string, Texture2D> spriteSheets = new Dictionary<string, Texture2D>();
         private Dictionary<string, IDrawableAsset> drawableAssets = new Dictionary<string, IDrawableAsset>();
