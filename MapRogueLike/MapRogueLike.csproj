@@ -44,6 +44,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Engine\Animation.cs" />
     <Compile Include="Engine\Asset.cs" />
     <Compile Include="Engine\AssetManager.cs" />
     <Compile Include="Engine\Manager.cs" />

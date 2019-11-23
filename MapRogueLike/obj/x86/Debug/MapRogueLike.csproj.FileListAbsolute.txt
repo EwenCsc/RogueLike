@@ -75,3 +75,4 @@ D:\ProjetPerso\RogueLike\MapRogueLike\obj\x86\Debug\MapRogueLike.csproj.CoreComp
 D:\ProjetPerso\RogueLike\MapRogueLike\obj\x86\Debug\MapRogueLike.csproj.CopyComplete
 D:\ProjetPerso\RogueLike\MapRogueLike\obj\x86\Debug\MapRogueLike.exe
 D:\ProjetPerso\RogueLike\MapRogueLike\obj\x86\Debug\MapRogueLike.pdb
+D:\ProjetPerso\MapRogueLike\MapRogueLike\bin\Windows\x86\Debug\Content\Sprites\LinkSprites.xnb

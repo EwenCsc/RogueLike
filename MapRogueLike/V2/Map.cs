@@ -81,7 +81,7 @@ namespace MapRogueLike
                     // Creation de la map
                     room = new Room(gridPos);
                 }
-                takenRooms.Add(room.GripPos);
+                takenRooms.Add(room.GridPos);
                 roomGrid[gridPos.X, gridPos.Y] = room;
             }
         }
@@ -92,14 +92,14 @@ namespace MapRogueLike
             {
                 for (int j = 0; j < roomGrid.GetLength(1); j++)
                 {
-                    if (takenRooms.Contains(roomGrid[i, j].GripPos))
+                    if (takenRooms.Contains(roomGrid[i, j].GridPos))
                     {
                         Room room = roomGrid[i, j];
                         Vector4 open = new Vector4();
-                        open.X = takenRooms.Contains(room.GripPos - Vector2i.UnitY) ? 1 : 0;
-                        open.Y = takenRooms.Contains(room.GripPos + Vector2i.UnitY) ? 1 : 0;
-                        open.Z = takenRooms.Contains(room.GripPos - Vector2i.UnitX) ? 1 : 0;
-                        open.W = takenRooms.Contains(room.GripPos + Vector2i.UnitX) ? 1 : 0;
+                        open.X = takenRooms.Contains(room.GridPos - Vector2i.UnitY) ? 1 : 0;
+                        open.Y = takenRooms.Contains(room.GridPos + Vector2i.UnitY) ? 1 : 0;
+                        open.Z = takenRooms.Contains(room.GridPos - Vector2i.UnitX) ? 1 : 0;
+                        open.W = takenRooms.Contains(room.GridPos + Vector2i.UnitX) ? 1 : 0;
                         room.SetOpenedRooms(open);
                     }
                 }

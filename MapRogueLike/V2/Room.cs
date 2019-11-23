@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace MapRogueLike
 {
-    class Room
+    public class Room
     {
         Vector2i gridPos;
         Vector4 openedDoors = new Vector4(-1, -1, -1,-1);
@@ -14,7 +14,7 @@ namespace MapRogueLike
         Dictionary<Vector2, IDrawableAsset> roomTiles = new Dictionary<Vector2, IDrawableAsset>();
 
         public Vector4 OpenedDoors => openedDoors;
-        public Vector2i GripPos => gridPos;
+        public Vector2i GridPos => gridPos;
         
         public Room (Vector2i _gridPos)
         {
@@ -65,11 +65,11 @@ namespace MapRogueLike
                 Vector2 pos =
                     new Vector2(i % text.Width, i / text.Width) * new Vector2(32)
                     + new Vector2(32 * text.Width * gridPos.X, 32 * text.Height * gridPos.Y);
-                if (gridPos == Vector2i.UnitX)
-                {
-                    Console.WriteLine(new Vector2(32 * text.Width * gridPos.X, 32 * text.Height * gridPos.Y));
-                    Console.WriteLine(pos);
-                }
+                //if (gridPos == Vector2i.UnitX)
+                //{
+                //    Console.WriteLine(new Vector2(32 * text.Width * gridPos.X, 32 * text.Height * gridPos.Y));
+                //    Console.WriteLine(pos);
+                //}
 
                 Color c = data[i];
                 if (c == new Color(255, 0, 0))

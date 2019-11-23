@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MapRogueLike.Engine
 {
-    struct Vector2i
+    public struct Vector2i
     {
         public static Vector2i One => new Vector2i(1);
         public static Vector2i Zero => new Vector2i(0);

@@ -49,6 +49,18 @@
 /processorParam:TextureFormat=Color
 /build:Sprites/Lava.png
 
+#begin Sprites/LinkSprites.png
+/importer:TextureImporter
+/processor:TextureProcessor
+/processorParam:ColorKeyColor=48,48,48,255
+/processorParam:ColorKeyEnabled=True
+/processorParam:GenerateMipmaps=False
+/processorParam:PremultiplyAlpha=True
+/processorParam:ResizeToPowerOfTwo=False
+/processorParam:MakeSquare=False
+/processorParam:TextureFormat=Color
+/build:Sprites/LinkSprites.png
+
 #begin Sprites/Rooms.png
 /importer:TextureImporter
 /processor:TextureProcessor

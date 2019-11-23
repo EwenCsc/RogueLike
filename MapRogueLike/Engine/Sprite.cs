@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace MapRogueLike.Engine
 {
-    class Sprite : Asset, IDrawableAsset
+    public class Sprite : Asset, IDrawableAsset
     {
         Texture2D texture;
 
