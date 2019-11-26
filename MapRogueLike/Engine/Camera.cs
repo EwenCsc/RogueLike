@@ -107,22 +107,22 @@ namespace MapRogueLike.Engine
             }
 
 
-            if (Keyboard.GetState().IsKeyDown(KeyBinds.CameraMoveUp))
+            if (Input.GetKey(KeyBinds.CameraMoveUp))
             {
                 cameraMovement.Y = -moveSpeed;
             }
 
-            if (Keyboard.GetState().IsKeyDown(KeyBinds.CameraMoveDown))
+            if (Input.GetKey(KeyBinds.CameraMoveDown))
             {
                 cameraMovement.Y = moveSpeed;
             }
 
-            if (Keyboard.GetState().IsKeyDown(KeyBinds.CameraMoveLeft))
+            if (Input.GetKey(KeyBinds.CameraMoveLeft))
             {
                 cameraMovement.X = -moveSpeed;
             }
 
-            if (Keyboard.GetState().IsKeyDown(KeyBinds.CameraMoveRight))
+            if (Input.GetKey(KeyBinds.CameraMoveRight))
             {
                 cameraMovement.X = moveSpeed;
             }

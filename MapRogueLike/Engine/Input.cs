@@ -39,5 +39,44 @@ namespace MapRogueLike.Engine
         {
             return state.IsKeyDown(k);
         }
+
+        public static bool GetKeyDown(List<Keys> ks)
+        {
+            bool result = false;
+            foreach (Keys k in ks)
+            {
+                if (GetKeyDown(k))
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
+        public static bool GetKeyUp(List<Keys> ks)
+        {
+            bool result = false;
+            foreach (Keys k in ks)
+            {
+                if (GetKeyUp(k))
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
+
+        internal static bool GetKey(List<Keys> ks)
+        {
+            bool result = false;
+            foreach (Keys k in ks)
+            {
+                if (GetKey(k))
+                {
+                    result = true;
+                }
+            }
+            return result;
+        }
     }
 }

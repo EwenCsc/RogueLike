@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>D:/ProjetPerso/MapRogueLike/MapRogueLike/Content/Sprites/LinkSprites.png</SourceFile>
-  <SourceTime>2019-02-25T13:07:55.3786831+01:00</SourceTime>
-  <DestFile>D:/ProjetPerso/MapRogueLike/MapRogueLike/Content/bin/Windows/Content/Sprites/LinkSprites.xnb</DestFile>
-  <DestTime>2019-11-23T23:00:06.340372+01:00</DestTime>
+  <SourceFile>D:/ProjetPerso/RogueLike/MapRogueLike/Content/Sprites/LinkSprites.png</SourceFile>
+  <SourceTime>2019-11-25T09:09:10.8274048+01:00</SourceTime>
+  <DestFile>D:/ProjetPerso/RogueLike/MapRogueLike/Content/bin/Windows/Content/Sprites/LinkSprites.xnb</DestFile>
+  <DestTime>2019-11-25T09:14:15.8556018+01:00</DestTime>
   <Importer>TextureImporter</Importer>
-  <ImporterTime>2018-12-08T17:35:54+01:00</ImporterTime>
+  <ImporterTime>2018-09-23T23:55:52+02:00</ImporterTime>
   <Processor>TextureProcessor</Processor>
-  <ProcessorTime>2018-12-08T17:35:54+01:00</ProcessorTime>
+  <ProcessorTime>2018-09-23T23:55:52+02:00</ProcessorTime>
   <Parameters>
     <Key>ColorKeyColor</Key>
     <Value>48,48,48,255</Value>

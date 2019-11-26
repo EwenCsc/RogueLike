@@ -16,8 +16,10 @@ namespace MapRogueLike
         Vector2 position;
         IDrawableAsset drawable;
 
-        Room currentRoom;
+        Vector2 velocity = Vector2.Zero; 
 
+        Room currentRoom;
+        private float moveSpeed = .80f;
 
         public Player()
         {
@@ -29,7 +31,40 @@ namespace MapRogueLike
 
         public void Update(GameTime gameTime)
         {
+            Movements();
+            UpdatePosition();
+        }
 
+        private void UpdatePosition()
+        {
+            position += velocity;
+        }
+
+        private void Movements()
+        {
+            Vector2 v = Vector2.Zero;
+            if (Input.GetKey(KeyBinds.MovevementUp))
+            {
+                v += new Vector2(0, -moveSpeed);
+            }
+            if (Input.GetKey(KeyBinds.MovevementDown))
+            {
+                v += new Vector2(0, moveSpeed);
+            }
+            if (Input.GetKey(KeyBinds.MovevementLeft))
+            {
+                v += new Vector2(-moveSpeed, 0);
+            }
+            if (Input.GetKey(KeyBinds.MovevementRight))
+            {
+                v += new Vector2(moveSpeed, 0);
+            }
+
+            if (v != Vector2.Zero)
+            {
+                v.Normalize();
+            }
+            velocity = v * moveSpeed;
         }
 
         public void Draw(SpriteBatch spriteBatch)
