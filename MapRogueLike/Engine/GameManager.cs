@@ -37,27 +37,31 @@ namespace MapRogueLike.Engine
             Game.graphics.PreferredBackBufferHeight *= 2;
             Game.graphics.ApplyChanges();
             map = new Map();
-            cam = new Camera(Game.GraphicsDevice.Viewport);
-            player = new Player();
+            //cam = new Camera(Game.GraphicsDevice.Viewport);
+            //player = new Player();
         }
 
         public override void Update(GameTime gameTime)
         {
+            Time.Update(gameTime);
             Input.Update();
-            if (Input.GetKeyDown(Keys.R))
+            if (Input.GetKeyDown(Keys.R) && map.isGenerated)
             {
-                map = new Map();
+                map = new Map
+                {
+                    isGenerated = false
+                };
             }
             map.Update(gameTime);
-            cam.Update(gameTime);
-            player.Update(gameTime);
+            //cam.Update(gameTime);
+            //player.Update(gameTime);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
             map.Draw(spriteBatch);
-            player.Draw(spriteBatch);
+            //player.Draw(spriteBatch);
             spriteBatch.End();
         }
 

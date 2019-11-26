@@ -47,6 +47,7 @@
     <Compile Include="Engine\Animation.cs" />
     <Compile Include="Engine\Asset.cs" />
     <Compile Include="Engine\AssetManager.cs" />
+    <Compile Include="Engine\Time.cs" />
     <Compile Include="Engine\Manager.cs" />
     <Compile Include="Engine\ToolBox.cs" />
     <Compile Include="Engine\GameManager.cs" />

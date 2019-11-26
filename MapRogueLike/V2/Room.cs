@@ -57,19 +57,18 @@ namespace MapRogueLike
 
         private void SetRoomTiles()
         {
+            if (roomTiles.Count != 0)
+            {
+                roomTiles.Clear();
+            }
             Texture2D text = miniMapSprite.GetTexture();
             Color[] data = new Color[text.Width * text.Height];
             text.GetData(data);
             for (int i = 0; i < data.Length; i++)
             {
                 Vector2 pos =
-                    new Vector2(i % text.Width, i / text.Width) * new Vector2(32)
+                      new Vector2(i % text.Width, i / text.Width) * new Vector2(32)
                     + new Vector2(32 * text.Width * gridPos.X, 32 * text.Height * gridPos.Y);
-                //if (gridPos == Vector2i.UnitX)
-                //{
-                //    Console.WriteLine(new Vector2(32 * text.Width * gridPos.X, 32 * text.Height * gridPos.Y));
-                //    Console.WriteLine(pos);
-                //}
 
                 Color c = data[i];
                 if (c == new Color(255, 0, 0))

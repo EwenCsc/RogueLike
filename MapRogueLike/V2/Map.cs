@@ -12,17 +12,37 @@ namespace MapRogueLike
     /// </summary>
     class Map
     {
+        public bool isGenerated = true;
         Room[,] roomGrid;
         int gridSize = 16;
         int nbRooms = 25;
+
+        float timeBetweenCreatingNewRoom = 0.09f;
+        float timer;
         List<Vector2i> takenRooms = new List<Vector2i>();
-        
+
         public Map()
         {
+            timer = 0;
             roomGrid = new Room[gridSize, gridSize];
             InitRooms();
-            CreateRooms();
-            SetConnectionWithNeighbours();
+            //CreateRooms();
+            //SetConnectionWithNeighbours();
+        }
+
+        public void Update(GameTime gameTime)
+        {
+            timer -= Time.DeltaTime;
+            if (!isGenerated && timer <= 0)
+            {
+                timer = timeBetweenCreatingNewRoom + timer;
+                CreateOneRoom();
+                if (takenRooms.Count == nbRooms)
+                {
+                    isGenerated = true;
+                    SetConnectionWithNeighbours();
+                }
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
@@ -36,9 +56,47 @@ namespace MapRogueLike
             }
         }
 
-        internal void Update(GameTime gameTime)
+        private void CreateOneRoom()
         {
+            Room room = null;
+            Vector2i gridPos = new Vector2i(roomGrid.GetLength(0) / 2, roomGrid.GetLength(1) / 2);
 
+            //magic numbers
+            float randomCompare = 0.2f;
+            float randomCompareStart = 0.2f;
+            float randomCompareEnd = 0.01f;
+
+            if (takenRooms.Count == 0)
+            {
+                room = new Room(gridPos);
+            }
+            else
+            {
+                // Valeur entre 0 et 1. 
+                // 0 quand y'a 0 salles
+                // 1 quand toutes les salles sont remplies
+                float randomPerc = ((float)takenRooms.Count) / (((float)nbRooms/* - 1*/));
+                randomCompare = MathHelper.Lerp(randomCompareStart, randomCompareEnd, randomPerc);
+                // Get une salle vide voisine a une salle existant 
+                gridPos = GetEmptyRoomPosWithNeighbourgs();
+
+                // Regarde si la pièce a plus d'un voisin + proba de passer si y'a bcp de pièces
+                // Pour plus de détails / avoir des branches
+                if (NumberOfNeighbours(gridPos) > 1 && (float)new Random().NextDouble() > randomCompare)
+                {
+                    int iterations = 0;
+                    do
+                    {
+                        gridPos = GetEmptyRoomPosWithOneNeighbourg();
+                        iterations++;
+                    } while (NumberOfNeighbours(gridPos) > 1 && iterations < 100);
+                }
+                // Creation de la map
+                room = new Room(gridPos);
+            }
+            room.SetOpenedRooms(Vector4.One);
+            takenRooms.Add(room.GridPos);
+            roomGrid[gridPos.X, gridPos.Y] = room;
         }
 
         private void CreateRooms()
