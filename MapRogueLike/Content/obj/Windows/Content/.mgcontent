@@ -4,11 +4,11 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>D:/ProjetPerso/MapRogueLike/MapRogueLike/Content/Sprites/Brick.jpg</File>
-    <File>D:/ProjetPerso/MapRogueLike/MapRogueLike/Content/Sprites/Dirt.jpg</File>
-    <File>D:/ProjetPerso/MapRogueLike/MapRogueLike/Content/Sprites/Lava.png</File>
-    <File>D:/ProjetPerso/MapRogueLike/MapRogueLike/Content/Sprites/LinkSprites.png</File>
-    <File>D:/ProjetPerso/MapRogueLike/MapRogueLike/Content/Sprites/Rooms.png</File>
+    <File>D:/ProjetPerso/RogueLike/MapRogueLike/Content/Sprites/Brick.jpg</File>
+    <File>D:/ProjetPerso/RogueLike/MapRogueLike/Content/Sprites/Dirt.jpg</File>
+    <File>D:/ProjetPerso/RogueLike/MapRogueLike/Content/Sprites/Lava.png</File>
+    <File>D:/ProjetPerso/RogueLike/MapRogueLike/Content/Sprites/LinkSprites.png</File>
+    <File>D:/ProjetPerso/RogueLike/MapRogueLike/Content/Sprites/Rooms.png</File>
   </SourceFiles>
   <DestFiles>
     <File xsi:nil="true" />
