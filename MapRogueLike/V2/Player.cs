@@ -21,23 +21,29 @@ namespace MapRogueLike
         Room currentRoom;
         private float moveSpeed = .80f;
 
+        Camera cam;
+
         public Player()
         {
             life = maxLife;
             stamina = maxStamina;
             drawable = ToolBox.Instance.Get<AssetManager>().DrawableAssets["Down_Barbare"];
             position = ToolBox.Instance.Get<GameManager>().WindowSize / 2;
+            cam = new Camera(ToolBox.Instance.Get<GameManager>().GraphicsDevice.Viewport);
         }
 
         public void Update(GameTime gameTime)
         {
             Movements();
             UpdatePosition();
+            ToolBox.Instance.Get<GameManager>().GraphicsDevice.Viewport.X = position.X;
+            cam.UpdateCamera(ToolBox.Instance.Get<GameManager>().GraphicsDevice.Viewport);
         }
 
         private void UpdatePosition()
         {
             position += velocity;
+            cam.Position = position;
         }
 
         private void Movements()

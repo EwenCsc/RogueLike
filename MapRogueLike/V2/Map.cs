@@ -12,7 +12,8 @@ namespace MapRogueLike
     /// </summary>
     class Map
     {
-        public bool isGenerated = true;
+        public bool generatingStepByStep = false;
+        public bool isGenerated = false;
         Room[,] roomGrid;
         int gridSize = 16;
         int nbRooms = 25;
@@ -26,11 +27,22 @@ namespace MapRogueLike
             timer = 0;
             roomGrid = new Room[gridSize, gridSize];
             InitRooms();
-            //CreateRooms();
-            //SetConnectionWithNeighbours();
+            if (!generatingStepByStep)
+            {
+                CreateRooms();
+                SetConnectionWithNeighbours();
+            }
         }
 
         public void Update(GameTime gameTime)
+        {
+            if (generatingStepByStep)
+            {
+                GenerateStepByStep();
+            }
+        }
+
+        private void GenerateStepByStep()
         {
             timer -= Time.DeltaTime;
             if (!isGenerated && timer <= 0)

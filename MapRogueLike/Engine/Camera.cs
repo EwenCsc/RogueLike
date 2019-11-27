@@ -45,11 +45,6 @@ namespace MapRogueLike.Engine
             VisibleArea = new Rectangle((int)min.X, (int)min.Y, (int)(max.X - min.X), (int)(max.Y - min.Y));
         }
 
-        public void Update(GameTime gameTime)
-        {
-
-        }
-
         private void UpdateMatrix()
         {
             Transform = Matrix.CreateTranslation(new Vector3(-Position.X, -Position.Y, 0)) *

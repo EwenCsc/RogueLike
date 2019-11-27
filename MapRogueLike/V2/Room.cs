@@ -40,6 +40,7 @@ namespace MapRogueLike
                 Texture2D text = drawable.GetTexture();
                 float scale = 0.2f;
                 spriteBatch.Draw(text, pos * scale, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+                spriteBatch.Draw(text, pos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
             }
         }
         
