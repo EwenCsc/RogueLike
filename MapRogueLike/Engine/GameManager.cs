@@ -1,4 +1,5 @@
 ﻿using System;
+using MapRogueLike.V2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -10,6 +11,7 @@ namespace MapRogueLike.Engine
         Game1 Game = null;
         Map map;
         Player player;
+        Camera camera;
 
         public GameManager()
         {
@@ -24,6 +26,9 @@ namespace MapRogueLike.Engine
             Game.graphics.ApplyChanges();
             map = new Map();
             player = new Player();
+            camera = new Camera(GraphicsDevice.Viewport);
+
+            player.Position = RoomManager.Instance.GetCenterRoom().Position;
         }
 
         public override void Update(GameTime gameTime)
@@ -32,23 +37,22 @@ namespace MapRogueLike.Engine
             Input.Update();
             if (Input.GetKeyDown(Keys.R) && map.isGenerated)
             {
-                map = new Map
-                {
-                    isGenerated = false
-                };
+                map = new Map();
             }
             map.Update(gameTime);
             player.Update(gameTime);
+            camera.SetPosition(player.Position);
+            camera.UpdateCamera(GraphicsDevice.Viewport);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp);
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, camera.Transform);
             map.Draw(spriteBatch);
             player.Draw(spriteBatch);
             spriteBatch.End();
         }
-
+        
         public GraphicsDevice GraphicsDevice => Game.GraphicsDevice;
 
         public Vector2 WindowSize => new Vector2(Game.graphics.PreferredBackBufferWidth, Game.graphics.PreferredBackBufferHeight);

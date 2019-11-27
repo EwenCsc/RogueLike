@@ -12,38 +12,33 @@ namespace MapRogueLike
 
         int stamina = 0;
         int maxStamina = 100;
-
-        Vector2 position;
+        
         IDrawableAsset drawable;
 
         Vector2 velocity = Vector2.Zero; 
 
         Room currentRoom;
-        private float moveSpeed = .80f;
+        private float moveSpeed = 8.0f;
 
-        Camera cam;
+        public Vector2 Position { get; set; }
 
         public Player()
         {
             life = maxLife;
             stamina = maxStamina;
             drawable = ToolBox.Instance.Get<AssetManager>().DrawableAssets["Down_Barbare"];
-            position = ToolBox.Instance.Get<GameManager>().WindowSize / 2;
-            cam = new Camera(ToolBox.Instance.Get<GameManager>().GraphicsDevice.Viewport);
+            //position = ToolBox.Instance.Get<GameManager>().WindowSize / 2;
         }
 
         public void Update(GameTime gameTime)
         {
             Movements();
             UpdatePosition();
-            ToolBox.Instance.Get<GameManager>().GraphicsDevice.Viewport.X = position.X;
-            cam.UpdateCamera(ToolBox.Instance.Get<GameManager>().GraphicsDevice.Viewport);
         }
 
         private void UpdatePosition()
         {
-            position += velocity;
-            cam.Position = position;
+            Position += velocity;
         }
 
         private void Movements()
@@ -75,7 +70,7 @@ namespace MapRogueLike
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(drawable.GetTexture(), position, null, Color.White, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0);
+            spriteBatch.Draw(drawable.GetTexture(), Position, null, Color.White, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0);
         }
 
         public void SetCurrentRoom(Room room)

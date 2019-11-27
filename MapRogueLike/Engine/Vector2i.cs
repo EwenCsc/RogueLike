@@ -55,6 +55,7 @@ namespace MapRogueLike.Engine
                    X == i.X &&
                    Y == i.Y;
         }
+        public Vector2 Vector2 => vector;
 
         public static Vector2i operator +(Vector2i value1, Vector2i value2)         => new Vector2i(value1.X + value2.X, value1.Y + value2.Y);
         public static Vector2i operator -(Vector2i value)                           => new Vector2i(-value.X, -value.Y);

@@ -64,6 +64,7 @@
     <Compile Include="V2\Map.cs" />
     <Compile Include="V2\Room.cs" />
     <Compile Include="Engine\Vector2i.cs" />
+    <Compile Include="V2\RoomManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">

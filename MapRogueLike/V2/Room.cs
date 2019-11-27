@@ -1,4 +1,5 @@
 ﻿using MapRogueLike.Engine;
+using MapRogueLike.V2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -8,6 +9,9 @@ namespace MapRogueLike
 {
     public class Room
     {
+        public static readonly Vector2 roomDimension    = new Vector2(16, 9);
+        public static readonly Vector2 tileSize         = new Vector2(32);
+
         Vector2i gridPos;
         Vector4 openedDoors = new Vector4(-1, -1, -1,-1);
         IDrawableAsset miniMapSprite = null;
@@ -15,6 +19,7 @@ namespace MapRogueLike
 
         public Vector4 OpenedDoors => openedDoors;
         public Vector2i GridPos => gridPos;
+        public Vector2 Position => gridPos.Vector2 * roomDimension * tileSize;
         
         public Room (Vector2i _gridPos)
         {
@@ -23,14 +28,6 @@ namespace MapRogueLike
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // MiniMap
-            if (miniMapSprite != null)
-            {
-                Texture2D texture = miniMapSprite.GetTexture();
-                Vector2 pos = new Vector2(texture.Bounds.Width * gridPos.X, texture.Bounds.Height * gridPos.Y);
-                Vector2 offset = new Vector2(ToolBox.Instance.Get<GameManager>().WindowSize.X - (16/*Map width*/ * 16/*sprite Width*/), 0);
-                spriteBatch.Draw(texture, pos + offset, Color.White);
-            }
             // Real Map
             foreach (KeyValuePair<Vector2, IDrawableAsset> tile in roomTiles)
             {
@@ -39,8 +36,16 @@ namespace MapRogueLike
 
                 Texture2D text = drawable.GetTexture();
                 float scale = 0.2f;
-                spriteBatch.Draw(text, pos * scale, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
+                //spriteBatch.Draw(text, pos * scale, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
                 spriteBatch.Draw(text, pos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
+            }
+            // MiniMap
+            if (miniMapSprite != null)
+            {
+                Texture2D texture = miniMapSprite.GetTexture();
+                Vector2 pos = new Vector2(texture.Bounds.Width * gridPos.X, texture.Bounds.Height * gridPos.Y);
+                Vector2 offset = new Vector2(ToolBox.Instance.Get<GameManager>().WindowSize.X - (16/*Map width*/ * 16/*sprite Width*/), 0);
+                spriteBatch.Draw(texture, pos + offset, Color.White);
             }
         }
         
@@ -68,8 +73,8 @@ namespace MapRogueLike
             for (int i = 0; i < data.Length; i++)
             {
                 Vector2 pos =
-                      new Vector2(i % text.Width, i / text.Width) * new Vector2(32)
-                    + new Vector2(32 * text.Width * gridPos.X, 32 * text.Height * gridPos.Y);
+                      new Vector2(i % text.Width, i / text.Width) * tileSize
+                    + new Vector2(tileSize.X * text.Width * gridPos.X, tileSize.Y * text.Height * gridPos.Y);
 
                 Color c = data[i];
                 if (c == new Color(255, 0, 0))
@@ -86,5 +91,27 @@ namespace MapRogueLike
                 }
             }
         }
+
+        public Room GetNeighbourg(uint neighbour)
+        {
+            if ((neighbour == 0 && openedDoors.X == 0) 
+                || (neighbour == 1 && openedDoors.Y == 0)
+                || (neighbour == 2 && openedDoors.Z == 0)
+                || (neighbour == 3 && openedDoors.W == 0))
+            {
+                Console.WriteLine("No Neighbourg at this pos");
+                return null;
+            }
+
+            switch(neighbour)
+            {
+                case 0: return RoomManager.Instance.GetRoom(gridPos - Vector2i.UnitY);
+                case 1: return RoomManager.Instance.GetRoom(gridPos + Vector2i.UnitY);
+                case 2: return RoomManager.Instance.GetRoom(gridPos - Vector2i.UnitX);
+                case 3: return RoomManager.Instance.GetRoom(gridPos + Vector2i.UnitX);
+                default: return null;
+            }
+        }
+
     }
 }

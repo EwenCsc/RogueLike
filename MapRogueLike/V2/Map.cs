@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using MapRogueLike.Engine;
+using MapRogueLike.V2;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
@@ -31,6 +32,8 @@ namespace MapRogueLike
             {
                 CreateRooms();
                 SetConnectionWithNeighbours();
+                isGenerated = true;
+                RoomManager.Instance.SetGrid(roomGrid);
             }
         }
 
@@ -53,6 +56,7 @@ namespace MapRogueLike
                 {
                     isGenerated = true;
                     SetConnectionWithNeighbours();
+                    RoomManager.Instance.SetGrid(roomGrid);
                 }
             }
         }
@@ -126,6 +130,7 @@ namespace MapRogueLike
                 if (i == 0)
                 {
                     room = new Room(gridPos);
+                    //room = new Room(new Vector2i(0));
                 }
                 else
                 {

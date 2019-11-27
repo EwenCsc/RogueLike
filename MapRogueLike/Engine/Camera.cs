@@ -23,9 +23,8 @@ namespace MapRogueLike.Engine
         {
             Bounds = viewport.Bounds;
             Zoom = 1f;
-            Position = Vector2.Zero;
+            Position = Vector2.One;
         }
-
 
         private void UpdateVisibleArea()
         {
@@ -51,6 +50,11 @@ namespace MapRogueLike.Engine
                     Matrix.CreateScale(Zoom) *
                     Matrix.CreateTranslation(new Vector3(Bounds.Width * 0.5f, Bounds.Height * 0.5f, 0));
             UpdateVisibleArea();
+        }
+
+        public void SetPosition(Vector2 position)
+        {   
+            Position = position;
         }
 
         public void MoveCamera(Vector2 movePosition)
