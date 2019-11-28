@@ -28,7 +28,6 @@ namespace MapRogueLike
             life = maxLife;
             stamina = maxStamina;
             drawable = ToolBox.Instance.Get<AssetManager>().DrawableAssets["Down_Barbare"];
-            //position = ToolBox.Instance.Get<GameManager>().WindowSize / 2;
         }
 
         public void Update(GameTime gameTime)

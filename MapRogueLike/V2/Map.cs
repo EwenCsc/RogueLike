@@ -83,8 +83,13 @@ namespace MapRogueLike
 
         public Vector2 FindCurrentRoom(Vector2 position)
         {
-            return TakenRooms.Find(r => r.Bounds.Contains(position)).
-                Position + (Room.realSize / 2);
+            Room room = TakenRooms.Find(r => r.Bounds.Contains(position));
+            TakenRooms.ForEach(r => r.SetCurrent(r == room));
+            if (room == null)
+            {
+                return position;
+            }
+            return room.Position + (Room.realSize / 2);
         }
 
         public void Draw(SpriteBatch spriteBatch)

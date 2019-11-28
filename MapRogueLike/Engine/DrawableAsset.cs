@@ -5,9 +5,9 @@ namespace MapRogueLike.Engine
 {
     public abstract class DrawableAsset
     {
-        protected Vector2 position = Vector2.Zero;
+        public Vector2 Position { get; private set; }
         public virtual Vector2 size => Vector2.Zero;
-        public Rectangle Bounds => new Rectangle(position.ToPoint(), size.ToPoint());
+        public Rectangle Bounds => new Rectangle(Position.ToPoint(), size.ToPoint());
 
         public DrawableAsset()
         {
@@ -18,7 +18,7 @@ namespace MapRogueLike.Engine
 
         public virtual void SetPosition(Vector2 pos)
         {
-            position = pos;
+            Position = pos;
         }
     }
 }
