@@ -14,7 +14,7 @@ namespace MapRogueLike
         int stamina = 0;
         int maxStamina = 100;
         
-        IDrawableAsset drawable;
+        DrawableAsset drawable;
 
         Vector2 velocity = Vector2.Zero; 
 

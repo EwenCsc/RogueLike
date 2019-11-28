@@ -15,8 +15,8 @@ namespace MapRogueLike
 
         Vector2i gridPos;
         Vector4 openedDoors = new Vector4(-1, -1, -1,-1);
-        IDrawableAsset miniMapSprite = null;
-        Dictionary<Vector2, IDrawableAsset> roomTiles = new Dictionary<Vector2, IDrawableAsset>();
+        DrawableAsset miniMapSprite = null;
+        Dictionary<Vector2, DrawableAsset> roomTiles = new Dictionary<Vector2, DrawableAsset>();
 
         public Vector4 OpenedDoors => openedDoors;
         public Vector2i GridPos => gridPos;
@@ -50,9 +50,9 @@ namespace MapRogueLike
         private void DrawRealMap(SpriteBatch spriteBatch)
         {
             // Real Map
-            foreach (KeyValuePair<Vector2, IDrawableAsset> tile in roomTiles)
+            foreach (KeyValuePair<Vector2, DrawableAsset> tile in roomTiles)
             {
-                IDrawableAsset drawable = tile.Value;
+                DrawableAsset drawable = tile.Value;
                 Vector2 pos = tile.Key;
 
                 Texture2D text = drawable.GetTexture();
@@ -125,6 +125,5 @@ namespace MapRogueLike
                 default: return null;
             }
         }
-
     }
 }

@@ -44,7 +44,7 @@ namespace MapRogueLike.Engine
             map.Update(gameTime);
             player.Update(gameTime);
             camera.SetPosition(player.Position);
-            //camera.SetPosition(map.FindCurrentRoom(player.Position) + (Room.realSize / 2));
+            camera.SetPosition(map.FindCurrentRoom(player.Position));
             camera.UpdateCamera(GraphicsDevice.Viewport);
         }
 

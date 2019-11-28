@@ -11,15 +11,15 @@ namespace MapRogueLike.Engine
         private ContentManager content;
 
         private Dictionary<string, Texture2D> spriteSheets = new Dictionary<string, Texture2D>();
-        private Dictionary<string, IDrawableAsset> drawableAssets = new Dictionary<string, IDrawableAsset>();
+        private Dictionary<string, DrawableAsset> drawableAssets = new Dictionary<string, DrawableAsset>();
 
-        public Dictionary<string, IDrawableAsset> DrawableAssets => drawableAssets;
+        public Dictionary<string, DrawableAsset> DrawableAssets => drawableAssets;
         private Dictionary<string, Sprite> sprites
         {
             get
             {
                 Dictionary<string, Sprite> result = new Dictionary<string, Sprite>();
-                foreach (KeyValuePair<string, IDrawableAsset> assets in drawableAssets)
+                foreach (KeyValuePair<string, DrawableAsset> assets in drawableAssets)
                 {
                     if (assets.Value is Sprite)
                     {
