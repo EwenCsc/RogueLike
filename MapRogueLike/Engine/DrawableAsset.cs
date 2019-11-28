@@ -9,11 +9,6 @@ namespace MapRogueLike.Engine
         public virtual Vector2 size => Vector2.Zero;
         public Rectangle Bounds => new Rectangle(Position.ToPoint(), size.ToPoint());
 
-        public DrawableAsset()
-        {
-
-        }
-
         abstract public Texture2D GetTexture();
 
         public virtual void SetPosition(Vector2 pos)

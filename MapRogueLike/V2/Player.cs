@@ -68,9 +68,19 @@ namespace MapRogueLike
             velocity = v * moveSpeed;
         }
 
+        //private float scale = 1;
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(drawable.GetTexture(), Position, null, Color.White, 0, Vector2.Zero, 1.0f, SpriteEffects.None, 0);
+            //Tests
+            //if (Input.GetKey(Microsoft.Xna.Framework.Input.Keys.A))
+            //{
+            //    scale = MathHelper.Clamp(scale + 0.1f, 0.1f, 1000);
+            //}
+            //if (Input.GetKey(Microsoft.Xna.Framework.Input.Keys.E))
+            //{
+            //    scale = MathHelper.Clamp(scale - 0.1f, 0.1f, 1000);
+            //}
+            spriteBatch.Draw(drawable.GetTexture(), Position, null, Color.White, 0, Vector2.Zero, 2, SpriteEffects.None, 0);
         }
 
         public void SetCurrentRoom(Room room)

@@ -53,7 +53,6 @@ namespace MapRogueLike
                 SetConnectionWithNeighbours();
                 isGenerated = true;
                 RoomManager.Instance.SetGrid(roomGrid);
-                Console.WriteLine(roomGrid[1, 1].Position);
             }
         }
 
