@@ -11,6 +11,7 @@ namespace MapRogueLike
     {
         public static readonly Vector2 roomDimension    = new Vector2(16, 9);
         public static readonly Vector2 tileSize         = new Vector2(32);
+        public static Vector2 realSize => roomDimension * tileSize;
 
         Vector2i gridPos;
         Vector4 openedDoors = new Vector4(-1, -1, -1,-1);
@@ -19,7 +20,8 @@ namespace MapRogueLike
 
         public Vector4 OpenedDoors => openedDoors;
         public Vector2i GridPos => gridPos;
-        public Vector2 Position => gridPos.Vector2 * roomDimension * tileSize;
+        public Vector2 Position => gridPos.Vector2 * realSize;
+        public Rectangle Bounds => new Rectangle(Position.ToPoint(), realSize.ToPoint());
         
         public Room (Vector2i _gridPos)
         {
@@ -27,6 +29,25 @@ namespace MapRogueLike
         }
 
         public void Draw(SpriteBatch spriteBatch)
+        {
+            DrawRealMap(spriteBatch);
+            //DrawMiniMap(spriteBatch);
+        }
+
+        public void DrawMiniMap(SpriteBatch spriteBatch)
+        {
+            // MiniMap
+            if (miniMapSprite != null)
+            {
+                Texture2D texture = miniMapSprite.GetTexture();
+                Vector2 pos = new Vector2(texture.Bounds.Width * gridPos.X, texture.Bounds.Height * gridPos.Y);
+                Vector2 offset = new Vector2(ToolBox.Instance.Get<GameManager>().WindowSize.X - (16/*Map width*/ * 16/*sprite Width*/), 0);
+                //offset += ToolBox.Instance.Get<GameManager>().camera.Position;
+                spriteBatch.Draw(texture, pos + offset, Color.White);
+            }
+        }
+
+        private void DrawRealMap(SpriteBatch spriteBatch)
         {
             // Real Map
             foreach (KeyValuePair<Vector2, IDrawableAsset> tile in roomTiles)
@@ -39,16 +60,8 @@ namespace MapRogueLike
                 //spriteBatch.Draw(text, pos * scale, null, Color.White, 0, Vector2.Zero, scale, SpriteEffects.None, 0);
                 spriteBatch.Draw(text, pos, null, Color.White, 0, Vector2.Zero, 1, SpriteEffects.None, 0);
             }
-            // MiniMap
-            if (miniMapSprite != null)
-            {
-                Texture2D texture = miniMapSprite.GetTexture();
-                Vector2 pos = new Vector2(texture.Bounds.Width * gridPos.X, texture.Bounds.Height * gridPos.Y);
-                Vector2 offset = new Vector2(ToolBox.Instance.Get<GameManager>().WindowSize.X - (16/*Map width*/ * 16/*sprite Width*/), 0);
-                spriteBatch.Draw(texture, pos + offset, Color.White);
-            }
         }
-        
+
         public void SetOpenedRooms(Vector4 _openedDoors)
         {
             openedDoors = _openedDoors;

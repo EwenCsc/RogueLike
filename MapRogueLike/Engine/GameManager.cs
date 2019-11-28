@@ -11,7 +11,7 @@ namespace MapRogueLike.Engine
         Game1 Game = null;
         Map map;
         Player player;
-        Camera camera;
+        public Camera camera;
 
         public GameManager()
         {
@@ -21,8 +21,10 @@ namespace MapRogueLike.Engine
         {
             Game = game;
             ToolBox.Instance.Get<AssetManager>().Content = game.Content;
-            Game.graphics.PreferredBackBufferWidth *= 2;
-            Game.graphics.PreferredBackBufferHeight *= 2;
+            //Game.graphics.PreferredBackBufferWidth *= 2;
+            //Game.graphics.PreferredBackBufferHeight *= 2;
+            Game.graphics.PreferredBackBufferWidth = 512;
+            Game.graphics.PreferredBackBufferHeight = 288;
             Game.graphics.ApplyChanges();
             map = new Map();
             player = new Player();
@@ -42,14 +44,21 @@ namespace MapRogueLike.Engine
             map.Update(gameTime);
             player.Update(gameTime);
             camera.SetPosition(player.Position);
+            //camera.SetPosition(map.FindCurrentRoom(player.Position) + (Room.realSize / 2));
             camera.UpdateCamera(GraphicsDevice.Viewport);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
+            // Drawing Physics Objects
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, camera.Transform);
             map.Draw(spriteBatch);
             player.Draw(spriteBatch);
+            spriteBatch.End();
+
+            // Drawing UI
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, null);
+            map.DrawMiniMap(spriteBatch);
             spriteBatch.End();
         }
         
