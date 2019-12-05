@@ -30,7 +30,7 @@ namespace MapRogueLike.Engine
             }
         }
 
-        bool log = false;
+        bool log = true;
 
         public ContentManager Content
         {
@@ -122,6 +122,16 @@ namespace MapRogueLike.Engine
             downAssasin.Add(sprites["LinkDown_00_Assasin"]);
             downAssasin.Add(sprites["LinkDown_01_Assasin"]);
             AddAnim("Down_Assasin", new Animation(downAssasin));
+
+            List<Sprite> downIdleBarbare = new List<Sprite>();
+            downIdleBarbare.Add(sprites["LinkDown_01_Barbare"]);
+            AddAnim("DownIdle_Barbare", new Animation(downIdleBarbare));
+            List<Sprite> downIdleMage = new List<Sprite>();
+            downIdleMage.Add(sprites["LinkDown_01_Mage"]);
+            AddAnim("DownIdle_Mage", new Animation(downIdleMage));
+            List<Sprite> downIdleAssasin = new List<Sprite>();
+            downIdleAssasin.Add(sprites["LinkDown_01_Assasin"]);
+            AddAnim("DownIdle_Assasin", new Animation(downIdleAssasin));
             #endregion
             #region Up
             List<Sprite> upB = new List<Sprite>();
@@ -136,6 +146,16 @@ namespace MapRogueLike.Engine
             upA.Add(sprites["LinkUp_00_Assasin"]);
             upA.Add(sprites["LinkUp_01_Assasin"]);
             AddAnim("Up_Assasin", new Animation(upA));
+
+            List<Sprite> upBIdle = new List<Sprite>();
+            upBIdle.Add(sprites["LinkUp_01_Barbare"]);
+            AddAnim("UpIdle_Barbare", new Animation(upBIdle));
+            List<Sprite> upMIdle = new List<Sprite>();
+            upMIdle.Add(sprites["LinkUp_01_Mage"]);
+            AddAnim("UpIdle_Mage", new Animation(upMIdle));
+            List<Sprite> upAIdle = new List<Sprite>();
+            upAIdle.Add(sprites["LinkUp_01_Assasin"]);
+            AddAnim("UpIdle_Assasin", new Animation(upAIdle));
             #endregion
             #region Right
             List<Sprite> rightD = new List<Sprite>();
@@ -150,6 +170,16 @@ namespace MapRogueLike.Engine
             rightA.Add(sprites["LinkRight_00_Assasin"]);
             rightA.Add(sprites["LinkRight_01_Assasin"]);
             AddAnim("Right_Assasin", new Animation(rightA));
+
+            List<Sprite> rightDIdle = new List<Sprite>();
+            rightDIdle.Add(sprites["LinkRight_01_Barbare"]);
+            AddAnim("RightIdle_Barbare", new Animation(rightDIdle));
+            List<Sprite> rightMIdle = new List<Sprite>();
+            rightMIdle.Add(sprites["LinkRight_01_Mage"]);
+            AddAnim("RightIdle_Mage", new Animation(rightMIdle));
+            List<Sprite> rightAIdle = new List<Sprite>();
+            rightAIdle.Add(sprites["LinkRight_01_Assasin"]);
+            AddAnim("RightIdle_Assasin", new Animation(rightAIdle));
             #endregion
             #region Left
             List<Sprite> leftD = new List<Sprite>();
@@ -164,6 +194,16 @@ namespace MapRogueLike.Engine
             leftA.Add(sprites["LinkLeft_00_Assasin"]);
             leftA.Add(sprites["LinkLeft_01_Assasin"]);
             AddAnim("Left_Assasin", new Animation(leftA));
+
+            List<Sprite> leftDIdle = new List<Sprite>();
+            leftDIdle.Add(sprites["LinkLeft_01_Barbare"]);
+            AddAnim("LeftIdle_Barbare", new Animation(leftDIdle));
+            List<Sprite> leftMIdle = new List<Sprite>();
+            leftMIdle.Add(sprites["LinkLeft_01_Mage"]);
+            AddAnim("LeftIdle_Mage", new Animation(leftMIdle));
+            List<Sprite> leftAIdle = new List<Sprite>();
+            leftAIdle.Add(sprites["LinkLeft_01_Assasin"]);
+            AddAnim("LeftIdle_Assasin", new Animation(leftAIdle));
             #endregion
             #endregion
         }

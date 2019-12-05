@@ -23,8 +23,8 @@ namespace MapRogueLike.Engine
             ToolBox.Instance.Get<AssetManager>().Content = game.Content;
             //Game.graphics.PreferredBackBufferWidth *= 2;
             //Game.graphics.PreferredBackBufferHeight *= 2;
-            Game.graphics.PreferredBackBufferWidth = 512;
-            Game.graphics.PreferredBackBufferHeight = 288;
+            Game.graphics.PreferredBackBufferWidth = (int)Room.realSize.X;
+            Game.graphics.PreferredBackBufferHeight = (int)Room.realSize.Y;
             Game.graphics.ApplyChanges();
             map = new Map();
             player = new Player();

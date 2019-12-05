@@ -45,6 +45,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Engine\Animation.cs" />
+    <Compile Include="Engine\Animator.cs" />
     <Compile Include="Engine\AssetManager.cs" />
     <Compile Include="Engine\Time.cs" />
     <Compile Include="Engine\Manager.cs" />
